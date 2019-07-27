@@ -1,0 +1,72 @@
+name:                "polysemy-password-manager"
+version:             "0.1.0.0"
+git:                 "https://gitlab.com/rkaippully/polysemy-password-manager"
+license:             "MPL-2.0"
+author:              "Raghu Kaippully"
+maintainer:          "rkaippully@gmail.com"
+copyright:           "2019 Raghu Kaippully"
+synopsis:            "An example application to demo polysemy"
+description:         "Please see the README at <https://gitlab.com/rkaippully/polysemy-password-manager>"
+
+extra-source-files:
+- README.md
+
+# Recommended settings for polysemy
+ghc-options: -O2 -flate-specialise -fspecialise-aggressively -fplugin=Polysemy.Plugin
+
+default-extensions:
+  # Recommended extensions for polysemy
+  - DataKinds
+  - FlexibleContexts
+  - GADTs
+  - LambdaCase
+  - PolyKinds
+  - RankNTypes
+  - ScopedTypeVariables
+  - TypeApplications
+  - TypeOperators
+  - TypeFamilies
+  - TemplateHaskell
+
+  # Deriving extensions
+  - GeneralizedNewtypeDeriving
+  - DeriveGeneric
+
+  # Misc extensions
+  - OverloadedStrings
+
+dependencies:
+  - base >= 4.7 && < 5
+
+  # Polysemy
+  - polysemy >= 1.0.0.0 && < 1.1 
+  - polysemy-plugin >= 0.2.2.0 && < 0.3
+  - polysemy-zoo >= 0.5.0.1 && < 0.6
+
+  # Misc
+  - bytestring >= 0.10.8.2 && < 0.11
+
+library:
+  source-dirs: src
+
+executables:
+  polysemy-password-manager-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - polysemy-password-manager
+
+tests:
+  polysemy-password-manager-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - polysemy-password-manager
