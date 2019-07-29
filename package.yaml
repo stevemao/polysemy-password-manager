@@ -11,8 +11,18 @@ description:         "Please see the README at <https://gitlab.com/rkaippully/po
 extra-source-files:
 - README.md
 
-# Recommended settings for polysemy
-ghc-options: -O2 -flate-specialise -fspecialise-aggressively -fplugin=Polysemy.Plugin
+ghc-options:
+  # Recommended settings for polysemy
+  - -O2
+  - -flate-specialise
+  - -fspecialise-aggressively
+  - -fplugin=Polysemy.Plugin
+  # Useful warnings
+  - -Wall
+  - -Wcompat
+  - -Wredundant-constraints
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
 
 default-extensions:
   # Recommended extensions for polysemy

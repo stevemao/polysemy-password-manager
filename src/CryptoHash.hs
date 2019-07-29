@@ -1,9 +1,6 @@
 module CryptoHash where
 
-import           Data.ByteString   (ByteString)
-import qualified Data.ByteString   as BS
 import           Polysemy          (Member, Sem)
-import qualified Polysemy          as P
 import qualified Polysemy.Internal as P
 import           Types
 

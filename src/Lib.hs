@@ -2,7 +2,6 @@ module Lib where
 
 import           CryptoHash
 import           Polysemy         (Members, Sem)
-import qualified Polysemy         as P
 import           Polysemy.KVStore (KVStore)
 import qualified Polysemy.KVStore as Store
 import           Types
