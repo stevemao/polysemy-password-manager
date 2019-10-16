@@ -26,8 +26,8 @@ runAllEffects :: CR.DRG gen
               -> (forall r. Members [CryptoHash, KVStore Username PasswordHash] r => Sem r a)
               -> a
 runAllEffects drg program =
-  program                            -- [CryptoHash, KVStore Username Password]
-    & runCryptoHashAsState           -- [KVStore Username Password, State gen]
+  program                            -- [CryptoHash, KVStore Username PasswordHash]
+    & runCryptoHashAsState           -- [KVStore Username PasswordHash, State gen]
     & KV.runKVStorePurely Map.empty  -- [State gen]
     & PS.evalState drg               -- []
     & P.run

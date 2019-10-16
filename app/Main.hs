@@ -50,8 +50,8 @@ runAllEffects :: CR.DRG gen
               -> (forall r. Members [CryptoHash, KVStore Username PasswordHash] r => Sem r a)
               -> IO a
 runAllEffects drg conn program =
-  program                    -- [CryptoHash, KVStore Username Password]
-    & runCryptoHashAsState   -- [KVStore Username Password, State gen]
+  program                    -- [CryptoHash, KVStore Username PasswordHash]
+    & runCryptoHashAsState   -- [KVStore Username PasswordHash, State gen]
     & runKVStoreAsSQLite     -- [Input Connection, State gen, Embed IO]
     & PI.runInputConst conn  -- [State gen, Embed IO]
     & PS.evalState drg       -- [Embed IO]
