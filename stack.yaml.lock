@@ -3,10 +3,17 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
 snapshots:
-- completed:
-    size: 529134
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2019/9/21.yaml
-    sha256: 1fb0ce1b3aab70f7b5147dc7b4abb8b1376d89e6991b78b977999be81e4c7912
-  original: nightly-2019-09-21
+- original: lts-18.5
+  completed:
+    sha256: 22d24d0dacad9c1450b9a174c28d203f9bb482a2a8da9710a2f2a9f4afee2887
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/5.yaml
+    size: 585817
+packages:
+- original:
+    hackage: polysemy-kvstore-0.1.2.0@sha256:d7016144ed6bfce89d6df18af47cf18020574d286ec743b42c8e9be83097e1e5,985
+  completed:
+    pantry-tree:
+      sha256: 6252ed9e68edc61e30bccee1b14fcc14542d8131d8d06c59d7c74db5f5b8ccc5
+      size: 277
+    hackage: polysemy-kvstore-0.1.2.0@sha256:d7016144ed6bfce89d6df18af47cf18020574d286ec743b42c8e9be83097e1e5,985
