@@ -13,7 +13,19 @@ import qualified Polysemy.Input         as PI
 import           Polysemy.KVStore       (KVStore (..))
 import qualified Polysemy.State         as PS
 import           Types
+import qualified Crypto.KDF.BCrypt as BCrypt
+import           Polysemy.State    (State)
 
+-- | Interpret CryptoHash using the BCrypt algorithm. This requires a
+-- DRG in a State effect.
+runCryptoHashAsState :: (CR.DRG gen, Member (State gen) r) => Sem (CryptoHash : r) a -> Sem r a
+runCryptoHashAsState = P.interpret $ \case
+  ValidateHash password hash -> return $ BCrypt.validatePassword password hash
+  MakeHash password          -> do
+    drg <- PS.get
+    let (hash, drg') = CR.withDRG drg $ BCrypt.hashPassword 5 password
+    PS.put drg'
+    return hash
 
 -- | Run a KVStore effect on an SQLite backend. Requires a DB connection as input.
 runKVStoreAsSQLite :: Member (Embed IO) r
